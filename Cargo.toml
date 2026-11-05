@@ -1,0 +1,46 @@
+[package]
+name = "melbet-analytics"
+version = "0.1.0"
+edition = "2021"
+authors = ["Melbet Analytics Team"]
+description = "Quantitative Sports Betting Analytics, Value Betting & Paper Trading Engine"
+
+[dependencies]
+# Async Runtime & Web API
+tokio = { version = "1.38", features = ["full"] }
+axum = { version = "0.7", features = ["macros"] }
+tower = { version = "0.4", features = ["util"] }
+tower-http = { version = "0.5", features = ["cors", "trace", "fs"] }
+
+# Serialization & Data
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1.8", features = ["v4", "serde"] }
+
+# Database
+sqlx = { version = "0.8", default-features = false, features = [
+    "runtime-tokio",
+    "tls-rustls",
+    "postgres",
+    "chrono",
+    "uuid",
+    "json",
+    "migrate"
+] }
+
+# HTTP Client for Melbet API Scraper / Collector
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+
+# Telemetry & Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+
+# Error Handling & Config
+thiserror = "1.0"
+anyhow = "1.0"
+dotenvy = "0.15"
+
+# Mathematics & Randomness for Simulation
+rand = "0.8"
+
